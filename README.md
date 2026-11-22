@@ -63,7 +63,3 @@ Rscript --vanilla strategy/run-fixed.R verify
 ~~~
 
 The extended input and earlier presentation assets remain in the archive. The public entry point uses the fixed 2025-05-30 sample.
-
-## 中文补充
-
-我建立了 TCHR 趋势确认锤头线反转策略，并用四种 Bootstrap 型随机过程、区块自助法和候选规则族校正来验证固定历史样本中的表现。英文 README 和英文报告是 GitHub 的默认展示入口，中文报告保留完整的中文说明。
