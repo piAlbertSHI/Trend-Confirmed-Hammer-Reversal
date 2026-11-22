@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="恒生指数 TCHR 策略的固定历史回测与四种 Bootstrap 统计验证。">
+<title>恒生指数 TCHR 策略研究 · 固定历史回测</title>
+<style>@@CSS@@</style>
+</head>
+<body>
+<header class="cover">
+  <div class="wrap cover-inner">
+    <div class="context">Hang Seng Index <span>·</span> R 策略研究</div>
+    <h1>恒生指数 TCHR 策略研究</h1>
+    <p class="deck">Trend-Confirmed Hammer Reversal（趋势确认锤头线反转）与四种 Bootstrap 统计检验</p>
+    <p class="dates">@@FIRST@@ 至 @@LAST@@ <span>·</span> @@DAYS@@ 个交易日 <span>·</span> 单边 5 bp</p>
+    <dl class="key-results">
+      <div><dt>策略净复利</dt><dd>@@NET@@</dd></div>
+      <div><dt>恒指买入持有</dt><dd>@@INDEX@@</dd></div>
+      <div><dt>净复利差</dt><dd>@@EXCESS@@ <small class="excess-unit">百分点</small></dd></div>
+    </dl>
+  </div>
+</header>
+<nav class="index" aria-label="报告章节">
+  <div class="wrap"><a href="#diagnose">TCHR 动机诊断</a><a href="#rule">交易规则</a><a href="#results">历史回测</a><a href="#randomness">随机性分析</a><a href="#reproduce">复算材料</a></div>
+</nav>
+<main class="wrap">
+  <section aria-labelledby="summary">
+    <h2 id="summary">摘要</h2>
+    <p class="lead">本研究围绕 TCHR，在同一个恒指历史窗口内比较组合和大盘。TCHR 组合净复利 <strong>@@NET@@</strong>，恒指买入持有 <strong>@@INDEX@@</strong>。组合年化净收益 @@ANNUAL@@，最大回撤 @@DD@@，同期恒指最大回撤 @@INDEX_DD@@。这些数字反映固定区间及指定成本口径下的历史表现。</p>
+  </section>
+  <section aria-labelledby="diagnose">
+    <h2 id="diagnose">原始日内规则的收益瓶颈</h2>
+    <p>在同一窗口，原规则只在 @@OLD_N@@ 个交易日做多，敞口 @@OLD_EXP@@。信号平均每笔毛对数收益 @@OLD_BP@@ bp，往返成本约 10 bp，合计净复利 @@OLD_NET@@。恒指买入持有的隔夜对数收益累计 @@GAP@@，开盘到收盘累计 @@DAY@@。每日收盘清仓使原规则缺少隔夜敞口，多日趋势仓位据此进入策略设计。</p>
+    @@DIAG@@
+  </section>
+  <section aria-labelledby="rule">
+    <h2 id="rule">规则与交易账本</h2>
+    <p><strong>趋势择时。</strong> 收盘高于 100 日均线 1% 时，下一交易日开盘做多。低于均线 1% 时退出，区间中间保持已有仓位。</p>
+    <p><strong>锤头线确认。</strong> 下影线大于实体的两倍、上影线小于实体，且收盘低于 20 日均线、距 100 日均线下方不超过 4%。出现形态后，最多等待 3 个交易日的收盘突破形态高点。确认后次日开盘入场，一次最长持有 10 日。收盘跌破形态低点或慢均线支持区时，下一开盘退出。</p>
+    <p>两个入场机制共享 100% 仓位上限，空仓收益为零。账本按开盘实际变更仓位收取费用，并将隔夜收益归入上一日收盘时的持仓。恒指在同样的第一日开盘买入、末日收盘卖出。窗口起点由 220 个交易日预热决定，终点是锁定行情的最后一日。参数来自历史研发，研究结论按回顾性回测解释。 <a href="fixed/protocol.md">完整实验设计</a> · <a href="engine.R">R 交易账本</a></p>
+  </section>
+  <section aria-labelledby="results">
+    <h2 id="results">恒指收益、风险与成本</h2>
+    @@PERFORMANCE_TABLE@@
+    <p>去掉形态、保留相同确认机制后，组合在固定窗口的净复利为 @@NO_SHAPE@@。带形态规则相对纯趋势增加 @@OVERLAY@@ 个百分点。两项比较使趋势持仓、价格确认和形态筛选的影响可分别核对。 <a href="fixed/results/candidates.csv">候选规则明细</a></p>
+    @@EQUITY@@
+    <p>TCHR 主规则入场 @@TRADES@@ 次，平均每次持仓 @@DURATION@@ 日，做多日期占 @@EXPOSURE@@。与该平均敞口相同的静态现金＋指数参考复利为 @@MATCHED@@。模型里的单边费用从 0 调至 30 bp 时，TCHR 主规则复利由 @@NO_FEE@@ 变为 @@HIGH_FEE@@。这两端同用原始交易日期。 <a href="fixed/results/tchr_trades.csv">逐笔成交</a> · <a href="fixed/results/performance.csv">成本情景</a></p>
+    @@FEES@@
+  </section>
+  <section aria-labelledby="randomness">
+    <h2 id="randomness">Randomness 随机性分析</h2>
+    <p>对固定窗口内的收盘收益分别校准随机游走、AR(1)、Student-t GARCH-M 和 EGARCH。每种生成 500 条、每条 @@DAYS@@ 日的路径，搭配同一段历史预热。以真实历史的开盘跳空及影线重建模拟 K 线。每条路径都重新生成交易，并与该路径持有指数的结果比较。单侧 <var>p</var> 值取模拟统计量达到或超过实际统计量的比例，含 +1 修正。 <a href="https://doi.org/10.1111/j.1540-6261.1992.tb04681.x">Brock、Lakonishok 与 LeBaron</a> · <a href="fixed/results/model_tail_tests.csv">模型统计与 Monte Carlo 区间</a> · <a href="fixed/results/egarch_optimization.csv">EGARCH 优化器校验</a></p>
+    @@NULL_TABLE@@
+    @@NULL@@
+    <p>另以循环区块自助法估计逐日主动收益的区间。20 日区块下，TCHR 主规则相对恒指的年化对数差为 @@ACTIVE@@，95% 区间 @@ACTIVE_CI@@。针对研发中的 51 条候选，同步重采样并用最大标准化统计量校正。TCHR 主规则单独检验的 <var>p</var> 值为 @@RAW_P@@，校正后为 <strong>@@ADJ_P@@</strong>。四种拟合模型给出的尾部概率有所不同，选参校正后的结果对稳定超额的支持有限。 <a href="https://doi.org/10.1111/0022-1082.00163">技术规则的数据窥探检验</a> · <a href="fixed/results/simultaneous_rule_test.csv">10、20、40 日区块结果</a></p>
+    @@INTERVALS@@
+  </section>
+  <section aria-labelledby="reproduce">
+    <h2 id="reproduce">数据口径与复算材料</h2>
+    <p>恒生指数点位作为开收盘成交代理。收益按价格指数记账，现金收益为零，费用用基点情景建模。回测、费用试验和模拟使用同一锁定窗口。源数据、逐日收益及图表均随项目保存在本地。 <a href="../data/README.md">原始行情与校验</a></p>
+    <div class="materials"><a href="README.md">使用说明</a><a href="run-fixed.R">R 复算入口</a><a href="fixed/results/daily.csv">逐日组合和基准</a><a href="fixed/results/model_paths.csv">模拟路径统计</a><a href="fixed/results/session-info.txt">R 环境</a></div>
+  </section>
+</main>
+<footer><div class="wrap">TCHR Statistical Study <span>·</span> Fixed historical sample</div></footer>
+</body>
+</html>

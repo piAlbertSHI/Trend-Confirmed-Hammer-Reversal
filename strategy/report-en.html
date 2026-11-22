@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCHR Statistical Study | Hang Seng Index</title>
+<meta name="description" content="Trend-Confirmed Hammer Reversal and four Bootstrap-style statistical validations on the Hang Seng Index.">
+<style>
+:root{--ink:#152e3d;--muted:#536c78;--teal:#0b716b;--blue:#285d84;--line:#d8e3e4;--paper:#f8faf8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 "Segoe UI","Helvetica Neue",Arial,sans-serif}
+.wrap{width:min(100% - 2rem,1080px);margin:auto}
+.hero{background:#142f3e;color:#f3f8f8;border-bottom:5px solid #3c9287}
+.hero .wrap{padding:3rem 0 2rem}
+.kicker{color:#a7d9d2;font-weight:650}
+h1{font-size:clamp(2.3rem,6vw,4.4rem);line-height:1.08;margin:.7rem 0 .45rem}
+.subtitle{font-size:1.2rem;color:#c9dfe2;margin:0}
+.meta{color:#a7bdc4;margin:1rem 0 1.8rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #58737b;border-radius:.55rem;overflow:hidden;background:#1d3d4d}
+.cards div{padding:1rem 1.15rem}.cards div+div{border-left:1px solid #58737b}
+.cards dt{font-size:.88rem;color:#c5e0e1;font-weight:650}.cards dd{font-size:2rem;line-height:1.2;margin:.2rem 0 0;font-weight:700}
+nav{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);z-index:2}
+nav .wrap{display:flex;gap:1.5rem;flex-wrap:wrap;padding:.7rem 0}
+nav a{color:var(--blue);font-weight:650;text-decoration:none}
+main{padding:1.4rem 0 3rem}
+section{border-top:1px solid var(--line);padding-top:1.5rem;margin-top:2.2rem}
+h2{font-size:1.8rem;margin:.1rem 0 .65rem;line-height:1.3}
+h3{color:var(--teal);font-size:1.2rem;margin:1.3rem 0 .35rem}
+.lead{font-size:1.08rem}
+strong{font-weight:750}
+figure{margin:1.2rem 0 1.4rem;border:1px solid var(--line);border-radius:.55rem;background:white;overflow:hidden}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:.55rem .8rem;color:var(--muted);font-size:.9rem;border-top:1px solid #e6eded}
+table{width:100%;border-collapse:collapse;background:white;margin:1rem 0 1.3rem;font-variant-numeric:tabular-nums}
+th,td{padding:.65rem .75rem;border-bottom:1px solid #e3ebeb;text-align:right}
+th:first-child,td:first-child{text-align:left}
+thead th{background:#e8f1f2;color:#24475a}
+ul{padding-left:1.4rem}
+.links{display:flex;gap:.8rem 1.3rem;flex-wrap:wrap;background:#e7f1ef;padding:.9rem;border-radius:.45rem}
+.links a{font-weight:650;color:var(--blue)}
+footer{border-top:1px solid var(--line);padding:1rem 0;color:var(--muted);font-size:.9rem}
+@media(max-width:650px){.cards{grid-template-columns:1fr}.cards div+div{border-left:0;border-top:1px solid #58737b}.hero .wrap{padding:2rem 0 1.4rem}nav{position:static}figure img{min-width:600px}.wrap{width:calc(100% - 1.2rem)}table{font-size:.9rem}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="wrap">
+<div class="kicker">Hang Seng Index · R statistical study</div>
+<h1>Trend-Confirmed Hammer Reversal</h1>
+<p class="subtitle">TCHR strategy design and Bootstrap-based validation</p>
+<p class="meta">Fixed sample: 2001-03-01 to 2025-05-30 · 5,973 sessions · 5 bp per side</p>
+<dl class="cards">
+<div><dt>TCHR net compound return</dt><dd>+173.89%</dd></div>
+<div><dt>Hang Seng buy-and-hold</dt><dd>+58.31%</dd></div>
+<div><dt>Net return spread</dt><dd>+115.58 pp</dd></div>
+</dl>
+</div>
+</header>
+<nav><div class="wrap"><a href="#strategy">Strategy</a><a href="#validation">Validation</a><a href="#results">Results</a><a href="#reproduce">Reproduce</a></div></nav>
+<main class="wrap">
+<section id="summary">
+<h2>Study summary</h2>
+<p class="lead">I developed TCHR by combining a 100-day trend buffer with a hammer-line reversal setup. The close confirms the decision and the next session open executes it. I evaluate the fixed historical sample with a price-index benchmark, explicit trading-cost scenarios, and four stochastic Bootstrap checks.</p>
+<p>The fixed historical result is positive and exceeds the same-window Hang Seng buy-and-hold return. The statistical layer measures how often the observed result appears under calibrated return and volatility structures, then adjusts the candidate-family comparison for data selection.</p>
+</section>
+<section id="strategy">
+<h2>Strategy definition</h2>
+<h3>Trend filter</h3>
+<p>TCHR enters when the close is at least 1% above the 100-session moving average. It exits when the close is at least 1% below the average. The buffer preserves the position between the two thresholds.</p>
+<h3>Hammer confirmation</h3>
+<p>A setup has a lower shadow longer than twice its body, an upper shadow shorter than its body, a close below the 20-session average, and a close within 4% of the 100-session support level. A close above the setup high confirms the reversal. The position is held for at most 10 sessions and exits after a close below the setup low or trend support.</p>
+<p>Decisions use the completed bar. Position changes execute at the next session open. The account is long-only, uses a single full-capital position, and charges 5 basis points per side in the primary result.</p>
+</section>
+<section id="validation">
+<h2>Why the statistical layer matters</h2>
+<p>A historical backtest gives one realized path. I therefore generate 500 valid OHLC paths under each of four calibrated processes and rerun the complete TCHR ledger on every path.</p>
+<ul>
+<li>Random Walk Bootstrap resamples empirical daily returns.</li>
+<li>AR(1) Bootstrap preserves first-order return dependence.</li>
+<li>Student-t GARCH-M Bootstrap preserves conditional volatility and the mean equation.</li>
+<li>EGARCH Bootstrap preserves asymmetric volatility responses and uses the higher-likelihood converged fit.</li>
+</ul>
+<p>Each path receives the same buy-and-hold benchmark and TCHR ablations. Circular block resampling estimates time-dependent uncertainty, and a max-t procedure adjusts the comparison across 51 candidate rules.</p>
+<figure><img src="fixed/figures/05-randomness.png" alt="TCHR active return distributions under four Bootstrap processes"><figcaption>Observed TCHR active return shown against four calibrated null distributions.</figcaption></figure>
+<figure><img src="fixed/figures/04-effects.png" alt="Circular block intervals for TCHR return and incremental effects"><figcaption>Block-bootstrap intervals for TCHR, exposure-adjusted return, confirmation, and hammer-line effects.</figcaption></figure>
+</section>
+<section id="results">
+<h2>Fixed-sample results</h2>
+<table>
+<thead><tr><th>Measure</th><th>TCHR</th><th>Hang Seng buy-and-hold</th></tr></thead>
+<tbody>
+<tr><td>Net compound return</td><td>+173.89%</td><td>+58.31%</td></tr>
+<tr><td>Maximum drawdown</td><td>−43.25%</td><td>−65.18%</td></tr>
+<tr><td>Primary cost</td><td>5 bp per side</td><td>0</td></tr>
+<tr><td>Candidate-family max-t adjusted p</td><td>0.538</td><td>—</td></tr>
+</tbody>
+</table>
+<figure><img src="fixed/figures/02-value-drawdown.png" alt="TCHR wealth and drawdown compared with the Hang Seng Index"><figcaption>Compounded wealth and drawdown over the fixed historical sample.</figcaption></figure>
+<figure><img src="fixed/figures/03-costs.png" alt="TCHR transaction-cost sensitivity"><figcaption>TCHR net compounding across one-way cost assumptions.</figcaption></figure>
+</section>
+<section id="reproduce">
+<h2>Reproduce the analysis</h2>
+<p>Run the fixed R entry point from the repository root. It rebuilds the numerical outputs, figures, report, and validation checks.</p>
+<pre><code>Rscript --vanilla strategy/run-fixed.R
+Rscript --vanilla strategy/run-fixed.R verify</code></pre>
+<div class="links">
+<a href="../README.md">Project README</a>
+<a href="report.html">中文报告</a>
+<a href="fixed/protocol.md">Fixed protocol</a>
+<a href="fixed/results/performance.csv">Performance CSV</a>
+<a href="fixed/results/model_tail_tests.csv">Bootstrap results</a>
+<a href="fixed/results/tchr_trades.csv">TCHR trades</a>
+</div>
+<p>Source archives and the supplemental input data remain under the archive directory.</p>
+<h3>中文补充</h3>
+<p>我建立了 TCHR 趋势确认锤头线反转策略，并用四种 Bootstrap 型随机过程、区块自助法和候选规则族校正来验证固定历史样本中的表现。</p>
+</section>
+</main>
+<footer><div class="wrap">Trend-Confirmed Hammer Reversal · Hang Seng Index · R statistical study</div></footer>
+</body>
+</html>

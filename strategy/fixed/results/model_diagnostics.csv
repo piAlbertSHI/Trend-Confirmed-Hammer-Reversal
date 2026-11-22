@@ -1,0 +1,5 @@
+"model","residuals","ar","solver","persistence","ljung_box_return_p","ljung_box_sq_p","notes"
+"Random walk",5972,,,,0.0413127252236662,0,"Empirical daily tuples"
+"AR(1)",5971,-0.00696238066584648,"ML",,0.0440216364473847,0,"Centered empirical innovations"
+"GARCH-M",5972,,"solnp",0.993847461033136,0.815828975409358,0.829969892064109,""
+"EGARCH",5972,,"nlminb",0.98756006564232,0.803292037053983,0.032202976925224,"Higher likelihood among converged solvers"
