@@ -1,0 +1,2 @@
+"stable_closure","transfer_test_events","transfer_mean_trade_uplift_bp","transfer_trade_uplift_ci_low_bp","transfer_random_p","bootstrap_models","bootstrap_paths_per_model","matched_active_models_below_0_05","active_models_below_0_05","matched_active_min_p","matched_active_max_p","base_compound","overlay_compound","base_max_drawdown","overlay_max_drawdown"
+TRUE,36,417.935134213732,143.742808170504,0.0096990300969903,4,500,4,2,0.0179640718562874,0.0399201596806387,0.0933848095608214,0.348153818984716,-0.432490316715603,-0.295736025932551

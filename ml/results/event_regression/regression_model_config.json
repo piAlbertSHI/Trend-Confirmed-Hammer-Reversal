@@ -1,0 +1,24 @@
+{
+  "analysis_cutoff": "2025-05-30",
+  "target_scale": 10000,
+  "nrounds": 600,
+  "early_stopping_rounds": 60,
+  "feature_correlation_threshold": 0.75,
+  "selection_fraction": 0.5,
+  "params": {
+    "booster": "gbtree",
+    "objective": "reg:squarederror",
+    "eval_metric": ["rmse", "mae"],
+    "max_depth": 2,
+    "min_child_weight": 1,
+    "eta": 0.05,
+    "subsample": 0.95,
+    "colsample_bytree": 0.9,
+    "gamma": 0,
+    "lambda": 5,
+    "alpha": 0.25,
+    "tree_method": "hist",
+    "seed": 20250530,
+    "nthread": 1
+  }
+}

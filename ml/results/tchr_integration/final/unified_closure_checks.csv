@@ -1,0 +1,6 @@
+"check","value"
+"walk_forward_overlay_stable",TRUE
+"four_bootstrap_models_complete",TRUE
+"matched_active_p_below_0_05_in_all_models",TRUE
+"active_p_below_0_05_in_at_least_two_models",TRUE
+"observed_matched_active_positive",TRUE

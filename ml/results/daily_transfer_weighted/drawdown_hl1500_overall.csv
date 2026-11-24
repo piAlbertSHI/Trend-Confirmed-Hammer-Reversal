@@ -1,0 +1,2 @@
+"run","test_events","selected","baseline_mean_adverse_bp","selected_mean_adverse_bp","baseline_worst_adverse_bp","selected_worst_adverse_bp","baseline_max_drawdown_bp","selected_max_drawdown_bp","drawdown_not_worse"
+"5d__correlation_pruned__hl_1500",70,45,-215.37355724062,-220.011703936264,-988.716806937644,-988.716806937644,-3800.16043427124,-3449.15212464159,TRUE

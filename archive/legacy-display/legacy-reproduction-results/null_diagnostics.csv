@@ -1,0 +1,5 @@
+"model","residuals","ar","solver","persistence","ljung_box_return_p","ljung_box_sq_p","notes"
+"Random walk",6154,,,,0.140111525683246,0,"Empirical drift and iid tuples"
+"AR(1)",6153,-0.00665733175820921,"ML",,0.142115271702531,0,"Centered empirical innovations"
+"GARCH-M",6154,,"solnp",0.994569638793134,0.726770607956695,0.138701553090428,""
+"EGARCH",6154,,"solnp",0.98719667994186,0.671499879447524,1.13476623220254e-06,""

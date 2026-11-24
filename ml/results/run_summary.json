@@ -1,0 +1,81 @@
+{
+  "window": {
+    "start": "2001-03-01",
+    "end": "2025-05-30",
+    "sessions": 5973
+  },
+  "features": 36,
+  "event_rows_holdout": 9,
+  "elastic_net": {
+    "alpha": 0.5,
+    "lambda": 1.3357,
+    "validation": [
+      {
+        "n": 1231,
+        "positive_rate": 0.5037,
+        "threshold": 0.5,
+        "auc": 0.5,
+        "pr_auc": 0.498,
+        "logloss": 0.694,
+        "brier": 0.2504,
+        "accuracy": 0.5037,
+        "precision": 0.5037,
+        "recall": 1,
+        "f1": 0.6699,
+        "predicted_positive_rate": 1
+      }
+    ],
+    "holdout": [
+      {
+        "n": 1570,
+        "positive_rate": 0.4822,
+        "threshold": 0.5,
+        "auc": 0.5,
+        "pr_auc": 0.5186,
+        "logloss": 0.6951,
+        "brier": 0.251,
+        "accuracy": 0.4822,
+        "precision": 0.4822,
+        "recall": 1,
+        "f1": 0.6506,
+        "predicted_positive_rate": 1
+      }
+    ]
+  },
+  "xgboost": {
+    "best_iteration": 31,
+    "validation": [
+      {
+        "n": 1231,
+        "positive_rate": 0.5037,
+        "threshold": 0.5,
+        "auc": 0.5338,
+        "pr_auc": 0.5378,
+        "logloss": 0.692,
+        "brier": 0.2494,
+        "accuracy": 0.5028,
+        "precision": 0.5045,
+        "recall": 0.7161,
+        "f1": 0.592,
+        "predicted_positive_rate": 0.7149
+      }
+    ],
+    "holdout": [
+      {
+        "n": 1570,
+        "positive_rate": 0.4822,
+        "threshold": 0.5,
+        "auc": 0.4852,
+        "pr_auc": 0.4858,
+        "logloss": 0.6974,
+        "brier": 0.2521,
+        "accuracy": 0.4694,
+        "precision": 0.4561,
+        "recall": 0.5218,
+        "f1": 0.4868,
+        "predicted_positive_rate": 0.5516
+      }
+    ]
+  },
+  "output_dir": "C:/Users/86182/Desktop/CUHK/Hang-Seng-Intraday-Study/ml/results"
+}

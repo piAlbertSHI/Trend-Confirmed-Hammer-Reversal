@@ -1,0 +1,6 @@
+"check","value"
+"test_events_at_least_30",TRUE
+"positive_trade_uplift_rate_at_least_75pct",TRUE
+"trade_uplift_median_positive",TRUE
+"trade_uplift_bootstrap_lower_above_zero",TRUE
+"random_trade_baseline_p_below_0_05",TRUE

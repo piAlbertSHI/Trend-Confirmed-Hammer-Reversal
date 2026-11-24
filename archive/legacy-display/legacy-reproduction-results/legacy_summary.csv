@@ -1,0 +1,5 @@
+"model","requested","finite","failed_fit_as_zero","other_errors","median_points","exceedances","reproduced_tail","finite_fits_tail","reported_tail","mean_invalid_bar_share"
+"Random walk",500,500,0,0,-453.854864389905,195,0.39,0.39,0.39,0.551610009749756
+"AR(1)",500,500,0,0,273.96957705406,216,0.432,0.432,0.432,0.624032504469365
+"GARCH-M",500,500,310,0,0,101,0.202,0.531578947368421,0.202,0.560710192771496
+"EGARCH",50,50,0,0,-158.641425414089,19,0.38,0.38,0.46,0.550955476113097

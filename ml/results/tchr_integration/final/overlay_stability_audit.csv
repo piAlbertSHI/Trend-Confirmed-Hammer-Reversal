@@ -1,0 +1,2 @@
+"run","stable_gain","folds","test_events","mean_trade_uplift_bp","median_trade_uplift_bp","positive_trade_uplift_rate","trade_uplift_ci_low_bp","random_trade_p","base_compound","overlay_compound","base_max_drawdown","overlay_max_drawdown","base_sharpe","overlay_sharpe"
+"TCHR + transferred ML overlay",TRUE,7,36,417.935134213732,180.684035490666,0.857142857142857,143.742808170504,0.0096990300969903,0.0933848095608214,0.348153818984716,-0.432490316715603,-0.295736025932551,0.118525538725732,0.256684236368607

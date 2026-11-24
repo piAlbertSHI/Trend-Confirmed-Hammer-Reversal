@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="恒生指数的趋势、锤头线和布林下轨回归策略。R 回测、成本、盈富基金检验与随机性分析。">
+<title>恒指交易策略改进 | 研究报告</title>
+<style>@@CSS@@</style>
+</head>
+<body>
+<header class="cover">
+  <div class="wrap cover-inner">
+    <div class="context">Hang Seng Index <span>·</span> R 量化研究</div>
+    <h1>恒指交易策略改进</h1>
+    <p class="deck">趋势择时、锤头线确认与布林下轨回归</p>
+    <p class="dates">@@HISTORY_FIRST@@ 至 @@HISTORY_LAST@@ <span>·</span> 模拟单边成本 5 bp</p>
+    <dl class="key-results">
+      <div><dt>冻结规则 · 全历史</dt><dd>@@MAIN_FULL@@<span class="key-note">恒指持有 @@BASE_FULL@@</span></dd></div>
+      <div><dt>主规则 · 2020 年起</dt><dd>@@MAIN_OOS@@<span class="key-note">恒指持有 @@BASE_OOS@@</span></dd></div>
+      <div><dt>下轨回归 · 2020 起</dt><dd>@@P06_OOS@@<span class="key-note">留出期后的探索候选</span></dd></div>
+    </dl>
+  </div>
+</header>
+<nav class="index" aria-label="报告章节">
+  <div class="wrap">
+    <a href="#diagnosis">原策略诊断</a><a href="#design">策略与回测</a><a href="#reversion">布林下轨回归</a><a href="#randomness">随机性分析</a><a href="#materials">数据与复算</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section aria-labelledby="summary">
+    <h2 id="summary">研究结论</h2>
+    <p class="lead">由开发期选出的 <strong>100 日均线＋锤头线确认</strong> 规则，全历史净复利为 <strong>@@MAIN_FULL@@</strong>，同日期买入持有为 @@BASE_FULL@@。冻结参数进入 2020 年后的样本外区间，净复利为 @@MAIN_OOS@@，同期大盘为 @@BASE_OOS@@。历史收益的改善主要来自趋势持仓，锤头线形态的独立贡献区间跨零。</p>
+    <p>二次探索中的布林下轨回归规则在 2020 年后获得 @@P06_OOS@@，在盈富基金代理上获得 @@P06_ETF_OOS@@。该规则的开发期交易敞口较低，选中后另用 1990–2000 年未参与前两轮的行情复核。早期复核中 P06 仍为正收益，但落后于大盘。</p>
+  </section>
+
+  <section aria-labelledby="diagnosis">
+    <h2 id="diagnosis">原策略的收益瓶颈</h2>
+    <p>改正开收盘列顺序后，原规则在 6,155 个交易日只入场 @@OLD_TRADES@@ 次，持仓 @@OLD_EXPOSURE@@ 的交易日。单笔平均毛对数收益为 @@OLD_TRADE_BP@@ bp，单边 5 bp 下每次往返约 10 bp。扩大影线范围虽然增加了信号，也使高换手规则的成本拖累更大。 <a href="../report.html">原版复现报告</a> · <a href="results/v1_diagnosis.csv">诊断明细</a></p>
+    @@DIAG_FIG@@
+    <p>在原档内，指数持有的隔夜对数收益累计 <strong>@@OLD_GAP_LOG@@</strong>，开盘到收盘累计 <strong>@@OLD_DAY_LOG@@</strong>。两部分相加得到买入持有的对数收益。旧策略每天收盘退出，持仓时段覆盖了指数历史收益较弱的部分。这个分解推动本轮将部分持仓延长到多个交易日。</p>
+  </section>
+
+  <section aria-labelledby="design">
+    <h2 id="design">从规则设计到样本外回测</h2>
+    <h3>冻结的主规则</h3>
+    <p><strong>趋势仓位。</strong> 收盘高于 100 日均线 1% 时做多，低于均线 1% 时退出，中间区间沿用此前仓位。缓冲带减少贴近均线时的反复切换。</p>
+    <p><strong>确认仓位。</strong> 当原版锤头线出现在 20 日均线下方、100 日均线的 96% 上方时，最多等 3 个交易日。其间收盘突破锤头线当日最高价才确认。确认仓位最长持有 10 日，收盘跌破形态低点或慢均线支持区则提前退出。两类仓位共享一个全仓或空仓账户。</p>
+    <p>收盘确认当日信息，下一交易日开盘执行。退出日前一晚的敞口和跳空计入账本。每次真实调仓收取单边成本，样本起始和终止按相同口径处理买入持有。空仓期间收益按零计。 <a href="PROTOCOL.md">候选范围与选参规则</a> · <a href="engine.R">R 执行账本</a></p>
+    <h3>回测与基准</h3>
+    <p>首轮建立 33 条候选，涵盖长均线、趋势加锤头线、独立锤头线、双重趋势和价格通道。仅用截至 2016 年末的数据、三个开发分段及单边 10 bp 的训练成本选参。全期与分段回测主口径为 5 bp。2020 年后的行情曾用于旧版检验，本轮结果按回顾式样本外解释。</p>
+    @@PERF_TABLE@@
+    @@FULL_FIG@@
+    <p>在主规则完整历史上，实际做多敞口为 @@EXPOSURE@@，共有 @@N_FULL@@ 次入场。最大回撤为 @@MAIN_DD@@，恒指为 @@BASE_DD@@。2020 年后即使费用设为零，冻结规则仍为 @@FREE_MAIN_OOS@@，同期恒指为 @@FREE_BASE_OOS@@。逐年用此前行情重新选择的策略净复利为 @@ANNUAL_WALK@@，同期大盘为 @@ANNUAL_BASE@@。 <a href="results/walk_forward_years.csv">逐年选参及交易结果</a></p>
+    @@OOS_FIG@@
+    @@COST_FIG@@
+    <p>同参数的纯趋势规则和去掉锤头线形态的确认规则用于消融比较。2020 年后，确认仓位相对纯趋势的累计对数增量约为 @@OVERLAY_DELTA@@，加入锤头线筛选相对同样确认条件的无形态版本为 @@SHAPE_DELTA@@。20 日区块置信区间均跨过零。 <a href="results/bootstrap_intervals.csv">全部区间与区块长度</a></p>
+    @@INTERVAL_FIG@@
+  </section>
+
+  <section aria-labelledby="reversion">
+    <h2 id="reversion">补充实验：布林下轨回归</h2>
+    <p>为减少盘整中持续持仓的风险，补充检验了 18 条有明确退出目标的短期超卖规则。触发条件包括 2 日 RSI 和布林下轨回归。到达 5 日均线、触及按 20 日 ATR 设定的收盘止损或达到持有上限时，下一开盘退出。仅按开发期选出的 RSI 规则在 2020 年后为 @@PULLBACK_TRAIN_PICK_OOS@@。 <a href="PULLBACK_DESIGN.md">补充实验定义</a> · <a href="results/pullback_performance.csv">全部 18 条候选</a></p>
+    <p>在较晚区间表现最好的下轨规则 P06 要求<strong>收盘回到 20 日布林下轨上方，仍低于 5 日均线，并且距 100 日均线下方不超过 4%</strong>。它从次日开盘入场，最多持有 5 日。它在该段触发 @@P06_TRADES@@ 笔，开发期敞口只有 @@P06_DEV_EXPO@@，低于补充实验 10% 门槛。该规则的较晚区间成绩来自观察同区间后的选择。</p>
+    @@FOLLOWUP_TABLE@@
+    <p>为检验能否跨市场阶段迁移，锁定 P06 后另外取 1990–2000 年的恒指行情，做与开发期不重叠的历史复核。正式计入回测前有 220 日预热。@@P06_EARLY_TRADES@@ 笔交易的早期净复利 @@P06_EARLY@@，同期买入持有 @@P06_EARLY_BASE@@。与后期结果合并看，当前能确认的是条件下的历史收益，对跨阶段稳定跑赢的支持仍有限。 <a href="FOLLOW_UP.md">P06 选择与独立区间</a> · <a href="results/early_hsi_audit.csv">早期行情核对</a></p>
+    @@EARLIER_FIG@@
+  </section>
+
+  <section aria-labelledby="randomness">
+    <h2 id="randomness">Randomness 随机性分析</h2>
+    <p>用 2019 年末及以前的收益校准随机游走、AR(1)、Student-t GARCH-M 和 EGARCH，每种生成 500 条覆盖 2020–2026 年交易日的 K 线路径。每条路径以此前真实 K 线预热，使用历史隔夜跳空与影线重建可行的开高低收，再执行相同费用、仓位规则和买入持有基准。表中的单侧尾部概率按达到或超过实际统计量的次数计算。 <a href="https://doi.org/10.1111/j.1540-6261.1992.tb04681.x">Brock、Lakonishok 与 LeBaron</a> · <a href="results/model_calibration.csv">校准和模拟窗口</a></p>
+    @@NULL_TABLE@@
+    @@NULL_FIG@@
+    <p>以 20 日循环区块比较同组全部规则，首轮开发期 33 条候选的超额收益 max-t 校正 <var>p</var> 为 @@MAIN_MAX_P@@。对补充 18 条候选在 2020 年后的事后挑选，同组校正 <var>p</var> 为 @@P06_MAX_P@@。锤头线置换在相同年份与趋势状态内保持形态数量，999 次模拟的单侧 <var>p</var> 为 @@HAMMER_PERM@@。P06 的单规则模型概率为探索结果，解读时结合成组校正和早期复核。 <a href="https://doi.org/10.1111/0022-1082.00163">Sullivan、Timmermann 与 White</a> · <a href="https://statistics.stanford.edu/technical-reports/circular-block-resampling-procedure-stationary-data">循环区块方法</a> · <a href="results/model_tail_tests.csv">逐模型统计</a></p>
+  </section>
+
+  <section aria-labelledby="materials">
+    <h2 id="materials">数据与复算</h2>
+    <p>市场基准为恒生价格指数按相同日期买入持有。代理检验用恒指确定交易方向，在盈富基金（2800.HK）报价日执行，组合与基金基准均以调整价格计量。对齐 @@FUND_DAYS@@ 个交易日，基金缺少有效开盘或收盘报价的指数日期按可得报价日跳过。调整价格与恒指点位均为日线成交代理，价差和执行风险用费用情景刻画。 <a href="https://www.trahk.com.hk/en-hk/trahk-fund/">盈富基金资料</a> · <a href="data/README.md">输入和质量检查</a></p>
+    <div class="materials">
+      <a href="../README.md">项目主页</a><a href="README.md">第二轮研究文件</a><a href="run.R">R 复算入口</a>
+      <a href="results/performance.csv">策略收益与风险</a><a href="results/selected_trades_oos.csv">样本外逐笔交易</a>
+      <a href="results/candidate_ranking.csv">开发期排序</a><a href="results/pullback_oos_max_t.csv">补充候选的多重检验</a>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">Hang Seng Intraday Study <span>·</span> R Strategy Research</div></footer>
+</body>
+</html>

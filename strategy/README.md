@@ -31,6 +31,7 @@ Rscript --vanilla strategy/run-fixed.R verify
 - [Candidate-family max-t correction](fixed/results/simultaneous_rule_test.csv)
 - [Model coefficients and diagnostics](fixed/results/model_coefficients.csv)
 - [EGARCH optimizer comparison](fixed/results/egarch_optimization.csv)
+- [Machine-learning overlay](ML_OVERLAY.md)
 
 ## 中文补充
 

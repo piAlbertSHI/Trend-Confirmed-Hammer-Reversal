@@ -1,0 +1,28 @@
+{
+  "analysis_cutoff": "2025-05-30",
+  "event_count": 58,
+  "independent_gap_sessions": 5,
+  "model_features": ["lower_shadow_to_body", "upper_shadow_to_body", "body_to_range", "close_location", "close_to_sma20", "close_to_sma100", "sma100_slope20", "return_5d", "return_20d", "drawdown100", "volatility20", "rsi14"],
+  "label_diagnostics": [
+    {
+      "label": "label_net_5d",
+      "events": 58,
+      "positive": 38,
+      "negative": 20,
+      "positive_rate": 0.6552,
+      "mean_return_bp": 65.9941,
+      "median_return_bp": 85.6733,
+      "sd_return_bp": 280.5154
+    },
+    {
+      "label": "label_excess_5d",
+      "events": 58,
+      "positive": 18,
+      "negative": 40,
+      "positive_rate": 0.3103,
+      "mean_return_bp": -15.4363,
+      "median_return_bp": -25.65,
+      "sd_return_bp": 94.2103
+    }
+  ]
+}

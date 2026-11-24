@@ -1,0 +1,65 @@
+{
+  "iterations": 10000,
+  "summaries": [
+    {
+      "run": "net_return_5d__fixed",
+      "folds": 5,
+      "test_events": 30,
+      "observed_mean_uplift_net_bp": -46.9766,
+      "random_mean_uplift_net_bp": -0.2016,
+      "random_lower_uplift_net_bp": -104.8377,
+      "random_upper_uplift_net_bp": 102.0889,
+      "random_p_net": 0.8093,
+      "observed_mean_uplift_excess_bp": 18.9548,
+      "random_mean_uplift_excess_bp": -0.2231,
+      "random_lower_uplift_excess_bp": -31.5331,
+      "random_upper_uplift_excess_bp": 31.6817,
+      "random_p_excess": 0.1286
+    },
+    {
+      "run": "net_return_5d__correlation_pruned",
+      "folds": 5,
+      "test_events": 30,
+      "observed_mean_uplift_net_bp": -1.0923,
+      "random_mean_uplift_net_bp": 0.9802,
+      "random_lower_uplift_net_bp": -102.8742,
+      "random_upper_uplift_net_bp": 102.3438,
+      "random_p_net": 0.5188,
+      "observed_mean_uplift_excess_bp": 22.6742,
+      "random_mean_uplift_excess_bp": 0.2519,
+      "random_lower_uplift_excess_bp": -31.0606,
+      "random_upper_uplift_excess_bp": 32.1151,
+      "random_p_excess": 0.094
+    },
+    {
+      "run": "excess_return_5d__fixed",
+      "folds": 5,
+      "test_events": 30,
+      "observed_mean_uplift_net_bp": -1.5972,
+      "random_mean_uplift_net_bp": -0.1905,
+      "random_lower_uplift_net_bp": -102.5987,
+      "random_upper_uplift_net_bp": 102.924,
+      "random_p_net": 0.5074,
+      "observed_mean_uplift_excess_bp": -8.707,
+      "random_mean_uplift_excess_bp": -0.2874,
+      "random_lower_uplift_excess_bp": -31.7494,
+      "random_upper_uplift_excess_bp": 31.3642,
+      "random_p_excess": 0.6795
+    },
+    {
+      "run": "excess_return_5d__correlation_pruned",
+      "folds": 5,
+      "test_events": 30,
+      "observed_mean_uplift_net_bp": 113.5784,
+      "random_mean_uplift_net_bp": 0.3539,
+      "random_lower_uplift_net_bp": -102.9069,
+      "random_upper_uplift_net_bp": 102.4916,
+      "random_p_net": 0.015,
+      "observed_mean_uplift_excess_bp": 3.3297,
+      "random_mean_uplift_excess_bp": 0.308,
+      "random_lower_uplift_excess_bp": -31.2326,
+      "random_upper_uplift_excess_bp": 31.733,
+      "random_p_excess": 0.435
+    }
+  ]
+}

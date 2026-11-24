@@ -1,0 +1,58 @@
+{
+  "analysis_cutoff": "2025-05-30",
+  "parameters": {
+    "min_gap": 5,
+    "support_ratio": 0.94,
+    "lower_ratio": 1.5,
+    "upper_ratio": 1.5,
+    "max_body_to_range": 0.65,
+    "min_body_pct": 0.0005
+  },
+  "events": 136,
+  "original_tchr_events": 58,
+  "candidate_only_events": 78,
+  "diagnostics": [
+    {
+      "horizon": "5d",
+      "events": 136,
+      "original_tchr_events": 58,
+      "candidate_only_events": 78,
+      "positive_excess": 75,
+      "positive_excess_rate": 0.5515,
+      "mean_net_bp": 18.3123,
+      "median_net_bp": 32.8034,
+      "mean_excess_bp": 15.0106,
+      "median_excess_bp": 50.9695,
+      "mean_adverse_bp": -52.7695,
+      "mean_utility_bp": -36.5057
+    },
+    {
+      "horizon": "10d",
+      "events": 136,
+      "original_tchr_events": 58,
+      "candidate_only_events": 78,
+      "positive_excess": 72,
+      "positive_excess_rate": 0.5294,
+      "mean_net_bp": 12.0821,
+      "median_net_bp": 37.3569,
+      "mean_excess_bp": -1.6384,
+      "median_excess_bp": 35.1198,
+      "mean_adverse_bp": -78.6292,
+      "mean_utility_bp": -77.7351
+    },
+    {
+      "horizon": "20d",
+      "events": 136,
+      "original_tchr_events": 58,
+      "candidate_only_events": 78,
+      "positive_excess": 70,
+      "positive_excess_rate": 0.5147,
+      "mean_net_bp": 35.0161,
+      "median_net_bp": 85.6238,
+      "mean_excess_bp": -0.0375,
+      "median_excess_bp": 23.0304,
+      "mean_adverse_bp": -115.8894,
+      "mean_utility_bp": -111.8987
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+"check","value"
+"test_events_at_least_40",TRUE
+"net_positive_fold_rate_at_least_75pct",TRUE
+"excess_positive_fold_rate_at_least_75pct",TRUE
+"utility_positive_fold_rate_at_least_75pct",TRUE
+"net_median_positive",TRUE
+"excess_median_positive",TRUE
+"utility_median_positive",TRUE
+"net_bootstrap_lower_above_zero",TRUE
+"excess_bootstrap_lower_above_zero",TRUE
+"utility_bootstrap_lower_above_zero",TRUE
+"random_net_p_below_0_05",TRUE
+"random_excess_p_below_0_05",TRUE
+"random_utility_p_below_0_05",TRUE
+"mean_adverse_not_worse",TRUE
+"worst_adverse_not_worse",TRUE
+"max_drawdown_not_worse",TRUE

@@ -1,0 +1,7 @@
+library(jsonlite)
+source("ml/candidate_random_baseline.R", encoding = "UTF-8")
+p <- read.csv("ml/results/daily_transfer_predictions_temp.csv", stringsAsFactors = FALSE)
+o <- run_candidate_random_baseline(p, iterations = 10000L, seed = 20250530L)
+write.csv(o$fold_metrics, "ml/results/daily_transfer/daily_random_baseline_fold_metrics.csv", row.names = FALSE, fileEncoding = "UTF-8")
+write.csv(o$summaries, "ml/results/daily_transfer/daily_random_baseline_summaries.csv", row.names = FALSE, fileEncoding = "UTF-8")
+print(o$summaries)

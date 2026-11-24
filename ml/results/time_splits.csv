@@ -1,0 +1,4 @@
+"split","start","end","role","rows","valid_5d_labels","positive_5d"
+"train",2001-03-01,2013-12-31,"model fitting and time-series cross-validation",3167,3167,1634
+"validation",2014-01-01,2018-12-31,"early stopping and model selection",1231,1231,620
+"holdout",2019-01-01,2025-05-30,"final out-of-time evaluation",1575,1570,757

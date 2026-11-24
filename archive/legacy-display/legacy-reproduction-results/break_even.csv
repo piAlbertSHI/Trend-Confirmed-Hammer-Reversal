@@ -1,0 +1,16 @@
+"period","rule","trades","breakeven_one_way_bp"
+"Archived sample","Original rule",125,-0.0469072338463043
+"Archived sample","Published tuning",1729,-1.24992138559343
+"Archived sample","Development selection",221,4.89225717027314
+"Development","Original rule",89,-0.383117283956879
+"Development","Published tuning",1135,-1.93486033095251
+"Development","Development selection",152,8.0613175453185
+"Validation","Original rule",13,-7.87007186413609
+"Validation","Published tuning",172,2.58517535920943
+"Validation","Development selection",23,-2.51802692742169
+"Historical holdout","Original rule",23,5.67586849549345
+"Historical holdout","Published tuning",422,-0.970847759033338
+"Historical holdout","Development selection",46,-1.87428238826274
+"Post-archive","Original rule",11,2.47461722668637
+"Post-archive","Published tuning",142,2.45172987443685
+"Post-archive","Development selection",18,3.00183192933548

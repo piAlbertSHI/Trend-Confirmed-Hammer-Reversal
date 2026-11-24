@@ -1,0 +1,8 @@
+"fold","half_life","specification","policy","policy_fraction","policy_threshold","validation_mean_utility_bp"
+"purged_fold_1",1000,"depth_1_low_penalty","top_fraction",0.5,-0.0095769905090332,163.728505559217
+"purged_fold_2",3000,"depth_1_low_penalty","top_fraction",0.5,-0.00488283309936523,-77.2821284753047
+"purged_fold_3",2200,"depth_1_low_penalty","top_fraction",0.5,-0.00488984642028809,116.380949829407
+"purged_fold_4",1500,"depth_3_low_penalty","top_fraction",0.5,-0.00446342468261719,173.420104338743
+"purged_fold_5",1000,"depth_3_low_penalty","top_fraction",0.5,-0.00321697196960449,184.79633644614
+"purged_fold_6",1260,"depth_2_low_penalty","top_fraction",0.75,-0.00738227005004883,-16.2587197683868
+"purged_fold_7",1260,"depth_3_low_penalty","top_fraction",0.5,-0.00624515342712402,-163.415678081716

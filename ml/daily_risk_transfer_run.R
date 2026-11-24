@@ -1,0 +1,39 @@
+source("R/data.R", encoding = "UTF-8")
+source("R/strategy.R", encoding = "UTF-8")
+source("ml/features.R", encoding = "UTF-8")
+source("ml/splits.R", encoding = "UTF-8")
+source("ml/preprocess.R", encoding = "UTF-8")
+source("ml/metrics.R", encoding = "UTF-8")
+source("ml/event_data.R", encoding = "UTF-8")
+source("ml/event_models.R", encoding = "UTF-8")
+source("ml/event_walk_forward.R", encoding = "UTF-8")
+source("ml/event_regression.R", encoding = "UTF-8")
+source("ml/candidate_events.R", encoding = "UTF-8")
+source("ml/candidate_regression.R", encoding = "UTF-8")
+source("ml/daily_transfer.R", encoding = "UTF-8")
+source("ml/daily_risk_transfer.R", encoding = "UTF-8")
+market <- load_market()$full
+ml <- build_ml_table(market)
+ml$data <- assign_ml_split(ml$data)
+attr(ml$data, "ml_feature_names") <- ml$feature_names
+candidate <- build_candidate_event_table(ml$data)
+event <- candidate$data
+daily <- build_daily_economic_table(ml$data)
+folds <- purged_event_walk_forward_folds(
+  event, min_train = 50L, validation_size = 15L, test_size = 10L,
+  step = 10L, train_embargo_sessions = 10L, test_gap_sessions = 10L
+)
+out <- run_daily_risk_walk_forward(
+  daily, event, folds, feature_mode = "correlation_pruned",
+  evaluation_subset = "all", weight_half_life = 1500
+)
+dir.create("ml/results/daily_risk_transfer", showWarnings = FALSE, recursive = TRUE)
+write.csv(out$fold_metrics, "ml/results/daily_risk_transfer/risk_fold_metrics.csv", row.names = FALSE)
+write.csv(out$predictions, "ml/results/daily_risk_transfer/risk_predictions.csv", row.names = FALSE)
+write.csv(out$selections, "ml/results/daily_risk_transfer/risk_selections.csv", row.names = FALSE)
+write.csv(out$summary, "ml/results/daily_risk_transfer/risk_summary.csv", row.names = FALSE)
+saveRDS(out, "ml/results/daily_risk_transfer/risk_models.rds", version = 3L)
+print(out$fold_metrics)
+print(out$summary)
+
+

@@ -1,0 +1,7 @@
+"horizon","feature_mode","evaluation_subset","target","folds","test_events","mean_uplift_net_bp","median_uplift_net_bp","positive_net_uplift_rate","net_uplift_ci_low_bp","mean_uplift_excess_bp","median_uplift_excess_bp","positive_excess_uplift_rate","excess_uplift_ci_low_bp","mean_uplift_utility_bp","median_uplift_utility_bp","positive_utility_uplift_rate","utility_uplift_ci_low_bp","mean_selected_rate","stable_gain","run"
+"5d","fixed","original","utility_5d",4,17,0,0,0,0,0,0,0,0,0,0,0,0,0.5,FALSE,"utility__fixed"
+"5d","correlation_pruned","original","utility_5d",4,17,0,0,0,0,0,0,0,0,0,0,0,0,0.5,FALSE,"utility__correlation_pruned"
+"5d","fixed","original","net_return_5d",4,17,0,0,0,0,0,0,0,0,0,0,0,0,1,FALSE,"net_return__fixed"
+"5d","correlation_pruned","original","net_return_5d",4,17,0,0,0,0,0,0,0,0,0,0,0,0,0.5,FALSE,"net_return__correlation_pruned"
+"5d","fixed","original","excess_return_5d",4,17,-19.3158991747762,0,0,-57.9476975243287,-17.835344133409,0,0,-53.5060324002271,-20.6769346266584,0,0,-62.0308038799752,0.916666666666667,FALSE,"excess_return__fixed"
+"5d","correlation_pruned","original","excess_return_5d",4,17,-1.29673202593207,0,0.25,-85.2640127425541,-6.69816132077123,0,0.25,-99.1418028708299,-4.37590080527108,0,0.25,-106.788235984872,0.75,FALSE,"excess_return__correlation_pruned"

@@ -1,0 +1,5 @@
+"model","residuals","ar","solver","persistence","ljung_box_return_p","ljung_box_sq_p","notes"
+"Random walk",4863,,,,0.13111094277517,0,"Independent empirical OHLC tuples"
+"AR(1)",4862,-0.0107431534088539,"ML",,0.130589213054251,0,"Empirical innovations; start at last calibrated return"
+"GARCH-M",4863,,"solnp",0.995302615250675,0.337651770940559,0.554046529758638,""
+"EGARCH",4863,,"solnp",0.988411298621688,0.287502122873634,0.0676754882292084,""

@@ -1,0 +1,5 @@
+"folds","test_events","positive_uplift_folds","positive_uplift_rate","mean_uplift_net_bp","median_uplift_net_bp","mean_uplift_excess_bp","median_uplift_excess_bp","positive_excess_uplift_rate","mean_selected_rate","mean_test_auc","mean_test_pr_auc","stable_gain","target","selection_rule","run"
+5,30,0,0,0,0,0,0,0,0.4,0.388888888888889,0.748333333333333,FALSE,"label_net_5d","validation_threshold","label_net_5d__validation_threshold"
+5,30,4,0.8,37.8446061854297,58.9550436050627,3.94124435267159,-7.94958462384721,0.4,0.5,0.388888888888889,0.748333333333333,FALSE,"label_net_5d","top_fraction","label_net_5d__top_fraction"
+5,30,0,0,-34.2248626261525,-34.2248626261525,-29.5416158633056,-29.5416158633056,0,0.266666666666667,0.425,0.396666666666667,FALSE,"label_excess_5d","validation_threshold","label_excess_5d__validation_threshold"
+5,30,3,0.6,12.9568443362451,58.9550436050627,5.93734164696781,-7.94958462384721,0.4,0.5,0.425,0.396666666666667,FALSE,"label_excess_5d","top_fraction","label_excess_5d__top_fraction"

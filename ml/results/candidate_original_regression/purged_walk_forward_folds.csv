@@ -1,0 +1,5 @@
+"id","train_start","train_end","validation_start","validation_end","test_start","test_end","train_events","validation_original_events","test_original_events","train_embargo_sessions","test_gap_sessions"
+"purged_fold_1",2002-02-05,2010-03-25,2010-05-12,2013-02-22,2013-03-28,2016-05-04,50,10,4,10,24
+"purged_fold_2",2002-02-05,2011-08-03,2011-12-21,2015-12-22,2016-05-04,2018-08-22,65,7,6,10,87
+"purged_fold_3",2002-02-05,2014-05-09,2014-09-02,2018-08-22,2018-12-10,2021-07-06,80,6,4,10,75
+"purged_fold_4",2002-02-05,2018-02-09,2018-03-06,2021-07-06,2021-07-21,2023-09-14,95,6,3,10,11

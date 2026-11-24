@@ -1,0 +1,6 @@
+"specification","a","b","columns","signal_to_entry","trades","sum_points","win","points_per_trade","compound","report_points","report_win","report_points_per_trade"
+"Archived fixed rule",2,1,"swapped",1,127,718.48,0.503937007874016,5.65732283464567,-0.000639288068341903,718.48,,
+"Named columns, next open",2,1,"named",1,125,-648.57,0.504,-5.18856,-0.00117199352467856,,,
+"Archived tuned rule",0.1,1.3,"swapped",0,1679,43910.31640625,0.56998213222156,26.1526601585765,,43411.08,0.5688,25.89
+"Named columns, signal-day open",0.1,1.3,"named",0,1729,-114635.228515625,0.337189126662811,-66.3014624150521,,,,
+"Named columns, next open at published tuning",0.1,1.3,"named",1,1729,-11477.125,0.48582995951417,-6.63801330248699,-0.350935262338492,,,

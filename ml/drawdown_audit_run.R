@@ -1,0 +1,10 @@
+source("ml/drawdown_audit.R", encoding = "UTF-8")
+p <- read.csv("ml/results/daily_transfer_weighted/weighted_predictions.csv", stringsAsFactors = FALSE)
+e <- read.csv("ml/results/candidates/candidate_event_table.csv", stringsAsFactors = FALSE)
+o <- run_drawdown_audit(p, e, "5d__correlation_pruned__hl_1260")
+dir.create("ml/results/daily_transfer_weighted", showWarnings = FALSE, recursive = TRUE)
+write.csv(o$folds, "ml/results/daily_transfer_weighted/drawdown_fold_audit.csv", row.names = FALSE)
+write.csv(o$overall, "ml/results/daily_transfer_weighted/drawdown_overall_audit.csv", row.names = FALSE)
+print(o$folds)
+print(o$overall)
+

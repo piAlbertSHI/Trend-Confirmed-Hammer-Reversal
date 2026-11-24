@@ -1,0 +1,2 @@
+"folds","test_events","mean_uplift_net_bp","median_uplift_net_bp","positive_net_rate","mean_uplift_excess_bp","median_uplift_excess_bp","positive_excess_rate","mean_uplift_utility_bp","median_uplift_utility_bp","positive_utility_rate","mean_adverse_change_bp"
+5,40,-58.8005855090413,-79.6102108428733,0.2,24.2434203092866,37.9906648599549,0.6,28.8413699970915,41.1146635963482,0.6,18.3568875233757

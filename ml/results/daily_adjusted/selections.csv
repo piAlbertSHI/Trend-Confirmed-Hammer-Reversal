@@ -1,0 +1,8 @@
+"fold","specification","alpha","policy","policy_fraction","policy_threshold","validation_objective"
+"purged_fold_1","depth_2_low_penalty",1,"top_fraction",0.5,0.357487493930122,214.908587043586
+"purged_fold_2","depth_2_regularized",1,"positive_score",0.4,0,78.1411795520731
+"purged_fold_3","depth_1_low_penalty",-0.5,"top_fraction",0.5,0.651045147545305,193.215293655692
+"purged_fold_4","depth_2_low_penalty",0.5,"positive_score",0.4,0,245.513512481991
+"purged_fold_5","depth_2_low_penalty",1,"positive_score",0.466666666666667,0,217.438220259682
+"purged_fold_6","depth_1_low_penalty",0,"top_fraction",0.5,-0.171405073021476,-21.5716010059623
+"purged_fold_7","depth_2_low_penalty",1,"top_fraction",0.5,-0.168905629156212,-146.656608210769
