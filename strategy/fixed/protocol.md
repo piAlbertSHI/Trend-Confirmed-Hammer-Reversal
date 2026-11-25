@@ -25,7 +25,3 @@ Each path receives a valid OHLC reconstruction, a fresh TCHR run, a same-path bu
 ## Costs and outputs
 
 The primary cost is 5 basis points per side. The analysis also reports 0, 2, 10, 20, and 30 basis points. Results include net compound return, drawdown, active return, exposure-adjusted return, path-level tail probabilities, Monte Carlo intervals, and the candidate-family correction.
-
-## 中文补充
-
-TCHR 将 100 日均线趋势缓冲、锤头线形态和收盘确认组合为次日开盘策略。固定窗口为 2001-03-01 至 2025-05-30。统计验证使用四种 Bootstrap 型随机过程、OHLC 路径重建、区块自助法和规则族 max-t 校正。

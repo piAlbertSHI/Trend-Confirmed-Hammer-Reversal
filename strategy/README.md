@@ -1,6 +1,6 @@
 # Trend-Confirmed Hammer Reversal (TCHR)
 
-[English research report](report-en.html) · [Chinese report](report.html)
+[English research report](report-en.html)
 
 I developed TCHR as the main strategy in this study. It combines a 100-day moving-average trend buffer, a hammer-line setup, close confirmation, and next-session execution. The fixed sample runs from 2001-03-01 to 2025-05-30 and contains 5,973 sessions.
 
@@ -31,8 +31,4 @@ Rscript --vanilla strategy/run-fixed.R verify
 - [Candidate-family max-t correction](fixed/results/simultaneous_rule_test.csv)
 - [Model coefficients and diagnostics](fixed/results/model_coefficients.csv)
 - [EGARCH optimizer comparison](fixed/results/egarch_optimization.csv)
-- [Machine-learning overlay](ML_OVERLAY.md)
-
-## 中文补充
-
-TCHR 是我建立的趋势确认锤头线反转策略。这里的主要工作是用四种 Bootstrap 型随机过程和候选规则族校正来验证策略表现，固定回测只作为统计检验的基础。
+- [Machine-learning overlay](ml-overlay.md)

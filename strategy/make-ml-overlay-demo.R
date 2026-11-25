@@ -202,7 +202,7 @@ html <- c(
   "<section class='figure'><h2>Time-fold trade uplift</h2><img src='figures/02-fold-trade-uplift.png' alt='Realized TCHR trade uplift by time fold'></section>",
   "<section class='figure'><h2>Four Bootstrap distributions</h2><img src='figures/03-bootstrap-matched-active.png' alt='Four Bootstrap simulated distributions for equal-exposure active return'></section>",
   "<section class='figure'><h2>Bootstrap metric comparison</h2><img src='figures/04-bootstrap-active.png' alt='Bootstrap intervals for absolute active, equal-exposure active, and overlay increment'></section>",
-  "<p class='footer'>The local preview is generated from the fixed 2001-03-01 to 2025-05-30 sample. It is not connected to GitHub.</p>",
+  "<p class='footer'>Fixed-sample preview of the TCHR overlay and Bootstrap results.</p>",
   "</main></body></html>"
 )
 writeLines(html, file.path(demo_dir, "index.html"), useBytes = TRUE)

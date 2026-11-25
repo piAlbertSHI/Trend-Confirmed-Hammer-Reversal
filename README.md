@@ -4,9 +4,9 @@
 
 I developed **Trend-Confirmed Hammer Reversal (TCHR)** by combining a 100-day trend filter, a hammer reversal setup, close confirmation, and next-session execution. The strategy uses a 1% trend buffer, holds a confirmed position for up to 10 sessions, and exits when the pattern low or trend support is lost.
 
-The main contribution is the statistical validation layer. I generate feasible OHLC paths under four calibrated processes, rerun TCHR on every path, and compare the observed result with null distributions, circular block intervals, and a max-t correction across 51 candidate rules.
+The study pairs the trading rule with a statistical validation layer. I generate feasible OHLC paths under four calibrated processes, rerun TCHR on every path, and compare the observed result with Bootstrap distributions, circular block intervals, and a max-t correction across 51 candidate rules.
 
-**[Read the English research report](strategy/report-en.html)** · [Chinese report](strategy/report.html)
+**[Read the English research report](strategy/report-en.html)**
 
 ## Fixed historical sample
 
@@ -31,9 +31,9 @@ Every path receives a valid OHLC reconstruction, a fresh TCHR run, a same-path b
 
 ## Machine-learning TCHR overlay
 
-I added a frozen XGBoost quality filter to TCHR entry events. The model is selected with purged walk-forward validation, calibrated only from past TCHR entries, and applied to seven out-of-time test folds. The transfer audit covers 36 TCHR entries with a mean realized trade-net uplift of **+417.94 bp**, a bootstrap lower bound of **+143.74 bp**, and a same-fold random-selection p-value of **0.0097**.
+I added a frozen XGBoost quality filter to TCHR entry events. The model is selected with purged walk-forward validation, calibrated from prior TCHR entries, and applied to seven out-of-time test folds. The transfer audit covers 36 TCHR entries with a mean realized trade-net uplift of **+417.94 bp**, a bootstrap lower bound of **+143.74 bp**, and a same-fold random-selection p-value of **0.0097**.
 
-The frozen overlay is then applied to 500 paths from each of the four Bootstrap processes. Equal-exposure active return remains positive with a one-sided p-value below 0.05 under all four processes. The implementation and complete result tables are documented in the [TCHR ML overlay](strategy/ML_OVERLAY.md).
+The frozen overlay is then applied to 500 paths from each of the four Bootstrap processes. Equal-exposure active return remains positive with a one-sided p-value below 0.05 under all four processes. The implementation and complete result tables are documented in the [TCHR ML overlay](strategy/ml-overlay.md).
 
 ## Visual evidence
 
@@ -70,8 +70,4 @@ Rscript --vanilla strategy/run-fixed.R
 Rscript --vanilla strategy/run-fixed.R verify
 ~~~
 
-The extended input data and earlier presentation assets remain in the archive. The public study uses the fixed window above.
-
-## 中文补充
-
-我建立了 TCHR 趋势确认锤头线反转策略，并在统一历史窗口内完成回测、四种 Bootstrap 随机性检验、区块自助法区间和候选规则族校正。英文报告是 GitHub 的默认展示入口，中文报告保留完整的中文说明。
+All headline results use the fixed 2001-03-01 to 2025-05-30 window.

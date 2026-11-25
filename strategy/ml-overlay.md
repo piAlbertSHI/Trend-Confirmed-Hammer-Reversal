@@ -10,7 +10,7 @@ The transfer audit contains 36 TCHR entry events across seven test folds. Actual
 
 On the covered portfolio interval, net compound return increases from 9.34% to 34.82%, maximum drawdown improves from −43.25% to −29.57%, and Sharpe ratio increases from 0.119 to 0.257.
 
-The five-session diagnostic target remains in the fold tables. The integration gate uses realized TCHR trade returns because the base strategy can hold a position for multiple sessions.
+The overlay ranks TCHR entries with the same trade ledger used by the base strategy.
 
 ## Unified Bootstrap closure
 

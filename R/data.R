@@ -1,6 +1,6 @@
 market_files <- c(
   archive = "data/raw/HSI_25years.csv",
-  extension = "archive/legacy-display/HSI_extension_archive.json"
+  extension = "data/raw/HSI_extension.json"
 )
 market_hashes <- c(
   archive = "e8e453bd22e7a2efca47039b7b5f1b278146b27f76b03ebe1867d7eee680cd09",

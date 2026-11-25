@@ -1,7 +1,0 @@
-"period","start","end"
-"Complete",2001-03-01,2026-11-20
-"Development",2001-03-01,2016-12-31
-"Validation",2017-01-01,2019-12-31
-"Historical holdout",2020-01-01,2025-04-01
-"Post-archive",2025-04-02,2026-11-20
-"Out of sample",2020-01-01,2026-11-20
